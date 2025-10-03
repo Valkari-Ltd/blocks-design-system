@@ -1,0 +1,12 @@
+{
+  "name": "blocks-design-system-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d example/dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}

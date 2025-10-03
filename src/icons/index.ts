@@ -1,0 +1,9 @@
+export { default as BinSvg } from './BinSvg';
+export { default as CubeSvg } from './CubeSvg';
+export { default as DbSvg } from './DbSvg';
+export { default as LinePlotSvg } from './LinePlotSvg';
+export { default as PieChartSvg } from './PieChartSvg';
+export { default as PlaySvg } from './PlaySvg';
+export { default as PlusSvg } from './PlusSvg';
+export { default as StopSvg } from './StopSvg';
+export { default as TargetSvg } from './TargetSvg';

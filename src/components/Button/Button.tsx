@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { colors, borderRadius, fontFamily } from '../../styles/theme';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -24,39 +25,45 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const getVariantStyles = (variant: ButtonProps['variant']): CSSProperties => {
-  const variantStyles: Record<string, CSSProperties> = {
-    primary: {
-      backgroundColor: '#007bff',
-      color: '#ffffff',
-      border: '1px solid #007bff',
-    },
-    secondary: {
-      backgroundColor: '#6c757d',
-      color: '#ffffff',
-      border: '1px solid #6c757d',
-    },
-    success: {
-      backgroundColor: '#28a745',
-      color: '#ffffff',
-      border: '1px solid #28a745',
-    },
-    danger: {
-      backgroundColor: '#dc3545',
-      color: '#ffffff',
-      border: '1px solid #dc3545',
-    },
-    warning: {
-      backgroundColor: '#ffc107',
-      color: '#000000',
-      border: '1px solid #ffc107',
-    },
-    info: {
-      backgroundColor: '#17a2b8',
-      color: '#ffffff',
-      border: '1px solid #17a2b8',
-    },
-  };
-  return variantStyles[variant || 'primary'];
+  switch (variant) {
+    case 'secondary':
+      return {
+        backgroundColor: colors.accent.DEFAULT,
+        color: colors.accent.foreground,
+        border: `1px solid ${colors.accent.DEFAULT}`,
+      };
+    case 'success':
+      return {
+        backgroundColor: colors.primary.DEFAULT,
+        color: colors.primary.foreground,
+        border: `1px solid ${colors.primary.DEFAULT}`,
+      };
+    case 'danger':
+      return {
+        backgroundColor: colors.gray[900],
+        color: colors.white,
+        border: `1px solid ${colors.gray[900]}`,
+      };
+    case 'warning':
+      return {
+        backgroundColor: colors.muted.DEFAULT,
+        color: colors.muted.foreground,
+        border: `1px solid ${colors.muted.DEFAULT}`,
+      };
+    case 'info':
+      return {
+        backgroundColor: colors.card,
+        color: colors.white,
+        border: `1px solid ${colors.card}`,
+      };
+    case 'primary':
+    default:
+      return {
+        backgroundColor: colors.primary.DEFAULT,
+        color: colors.primary.foreground,
+        border: `1px solid ${colors.primary.DEFAULT}`,
+      };
+  }
 };
 
 const getSizeStyles = (size: ButtonProps['size']): CSSProperties => {
@@ -87,9 +94,9 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: fontFamily.sans.join(', '),
     fontWeight: 500,
-    borderRadius: '0.25rem',
+    borderRadius: borderRadius.DEFAULT,
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.6 : 1,
     transition: 'all 0.2s ease-in-out',
@@ -107,4 +114,6 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
+
 Button.displayName = 'Button';
+export default Button;

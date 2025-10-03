@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { fontFamily, fontWeights } from '../../styles/theme';
 
 export interface TypographyProps {
   /**
@@ -33,27 +34,20 @@ export interface TypographyProps {
 
 const getVariantStyles = (variant: TypographyProps['variant']): CSSProperties => {
   const variantStyles: Record<string, CSSProperties> = {
-    h1: { fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' },
-    h2: { fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' },
-    h3: { fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem' },
-    h4: { fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' },
-    h5: { fontSize: '1rem', fontWeight: 500, marginBottom: '0.5rem' },
-    h6: { fontSize: '0.875rem', fontWeight: 500, marginBottom: '0.5rem' },
-    p: { fontSize: '1rem', fontWeight: 400, marginBottom: '1rem' },
-    span: { fontSize: '1rem', fontWeight: 400 },
+    h1: { fontSize: '2rem', fontWeight: fontWeights.bold, marginBottom: '0.5rem' },
+    h2: { fontSize: '1.5rem', fontWeight: fontWeights.bold, marginBottom: '0.5rem' },
+    h3: { fontSize: '1.25rem', fontWeight: fontWeights.semibold, marginBottom: '0.5rem' },
+    h4: { fontSize: '1.125rem', fontWeight: fontWeights.semibold, marginBottom: '0.5rem' },
+    h5: { fontSize: '1rem', fontWeight: fontWeights.medium, marginBottom: '0.5rem' },
+    h6: { fontSize: '0.875rem', fontWeight: fontWeights.medium, marginBottom: '0.5rem' },
+    p: { fontSize: '1rem', fontWeight: fontWeights.normal, marginBottom: '1rem' },
+    span: { fontSize: '1rem', fontWeight: fontWeights.normal },
   };
   return variantStyles[variant || 'p'];
 };
 
 const getWeightValue = (weight: TypographyProps['weight']): number => {
-  const weights: Record<string, number> = {
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-  };
-  return weights[weight || 'normal'];
+  return fontWeights[weight || 'normal'];
 };
 
 export const Typography: React.FC<TypographyProps> = ({
@@ -69,6 +63,7 @@ export const Typography: React.FC<TypographyProps> = ({
 
   const combinedStyles: CSSProperties = {
     margin: 0,
+    fontFamily: fontFamily.sans.join(', '),
     ...getVariantStyles(variant),
     ...(color && { color }),
     ...(weight && { fontWeight: getWeightValue(weight) }),
