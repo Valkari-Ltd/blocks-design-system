@@ -2,15 +2,25 @@ import React from "react";
 
 
 interface CubeSvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const CubeSvg = ({ color = 'currentColor', ...props }: CubeSvgProps) => (
+const CubeSvg: React.FC<CubeSvgProps> = ({
+  width = 19,
+  height = 21,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
-    width={19}
-    height={21}
+    width={width}
+    height={height}
     viewBox="0 0 19 21"
     fill="none"
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >

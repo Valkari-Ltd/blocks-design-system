@@ -2,15 +2,25 @@ import React from "react";
 
 
 interface LinePlotSvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const LinePlotSvg: React.FC<LinePlotSvgProps> = ({ color = 'currentColor', ...props }) => (
+const LinePlotSvg: React.FC<LinePlotSvgProps> = ({
+  width = 19,
+  height = 16,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
-    width={props.width || 19}
-    height={props.height || 16}
+    width={width}
+    height={height}
     viewBox="0 0 19 16"
     fill="none"
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >

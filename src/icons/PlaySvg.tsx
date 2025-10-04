@@ -2,10 +2,19 @@ import React from "react";
 
 
 interface PlaySvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const PlaySvg = ({ className = "", width = 16, height = 16, color = 'currentColor', ...props }: PlaySvgProps) => (
+const PlaySvg: React.FC<PlaySvgProps> = ({
+  width = 16,
+  height = 16,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
     className={className}
     width={width}

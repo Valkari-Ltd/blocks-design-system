@@ -146,6 +146,73 @@ npm run build
 - `npm run format:check` - Check code formatting
 - `npm run typecheck` - Run TypeScript type checking
 
+## Publishing to npm
+
+Follow these steps to publish a release to npm. The project already includes a `prepublishOnly` script that runs `npm run build` before publishing.
+
+1. (Optional) Bump the package version and create a git tag:
+
+```bash
+npm version patch     # or minor / major
+git push --follow-tags
+```
+
+2. Build and inspect the package contents locally:
+
+```bash
+npm run build
+npm pack --dry-run
+```
+
+3. Login and publish (interactive):
+
+```bash
+npm login
+npm publish
+# If your package is scoped and public, use:
+# npm publish --access public
+```
+
+4. Publish using an npm automation token (CI or if you prefer non-interactive):
+
+Set the token in your environment (Linux/macOS zsh):
+
+```bash
+export NPM_TOKEN="<your-token-here>"
+```
+
+Create or update `~/.npmrc` for the publish user (CI pipelines usually write this):
+
+```text
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
+```
+
+Then run:
+
+```bash
+npm publish
+```
+
+5. Verify the published version:
+
+```bash
+npm view blocks-design-system versions --json
+npm info blocks-design-system
+```
+
+6. (Optional) Install the published package into the example app or a test project to smoke test:
+
+```bash
+cd example
+npm install blocks-design-system@latest
+npm run build
+```
+
+Notes
+- Ensure `package.json` `name` and `version` are correct before publishing.
+- If publishing a scoped package (e.g., `@your-org/blocks-design-system`) you must use `npm publish --access public` for public scopes.
+- The repo already includes `files: ["dist"]` so only the `dist` directory, README and package.json will be included in the published tarball.
+
 ## Project Structure
 
 ```

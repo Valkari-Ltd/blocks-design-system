@@ -2,10 +2,19 @@ import React from "react";
 
 
 interface DbSvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const DbSvg = ({ width = 24, height = 23, className = "", color = 'currentColor', ...props }: DbSvgProps) => (
+const DbSvg: React.FC<DbSvgProps> = ({
+  width = 24,
+  height = 23,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
     width={width}
     height={height}

@@ -2,15 +2,25 @@ import React from "react";
 
 
 interface BinSvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const BinSvg = ({ color = 'currentColor', ...props }: BinSvgProps) => (
+const BinSvg: React.FC<BinSvgProps> = ({
+  width = 15,
+  height = 15,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
-    width={15}
-    height={15}
+    width={width}
+    height={height}
     viewBox="0 0 15 15"
     fill="none"
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >

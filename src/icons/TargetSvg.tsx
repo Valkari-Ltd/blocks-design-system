@@ -2,15 +2,25 @@ import React from "react";
 
 
 interface TargetSvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const TargetSvg: React.FC<TargetSvgProps> = ({ color = 'currentColor', ...props }) => (
+const TargetSvg: React.FC<TargetSvgProps> = ({
+  width = 20,
+  height = 20,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
-    width={props.width || 20}
-    height={props.height || 20}
+    width={width}
+    height={height}
     viewBox="0 0 20 20"
     fill="none"
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >

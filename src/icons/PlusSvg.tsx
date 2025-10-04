@@ -2,10 +2,19 @@ import * as React from "react";
 
 
 interface PlusSvgProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
   color?: string;
+  className?: string;
 }
 
-const PlusSvg = ({ width = 15, height = 15, color = 'currentColor', className = "", ...props }: PlusSvgProps) => (
+const PlusSvg: React.FC<PlusSvgProps> = ({
+  width = 15,
+  height = 15,
+  color = 'currentColor',
+  className = '',
+  ...props
+}) => (
   <svg
     width={width}
     height={height}
